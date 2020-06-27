@@ -2,6 +2,11 @@
 	"name": "ninesuns",
 	"displayName": "vscode-redux-code-gen",
 	"description": "agilean redux code generator",
+	"author": {
+		"name": "ninesunsabiu",
+		"email": "niensuns.lin@outlook.com"
+	},
+	"publisher": "ninesunsabiu",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.46.0"
