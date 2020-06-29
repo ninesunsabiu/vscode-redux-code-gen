@@ -38,7 +38,17 @@
 					"when": "explorerResourceIsFolder"
                 }
             ]
-        }
+		},
+		"configuration": {
+			"title": "ReduxCodeGen",
+			"properties": {
+				"reduxCodeGen.baseDir": {
+					"type": "string",
+					"default": "./src/redux",
+					"description": "生成 redux 代码的相对路径"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",

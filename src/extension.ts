@@ -7,12 +7,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let disposable = vscode.commands.registerCommand('ninesuns.reduxCodeGen', async (param) => {
 
-		const folderPath: string = param.fsPath;
+		const config = vscode.workspace.getConfiguration('reduxCodeGen');
+		
+		const folderPath = param?.fsPath as string | undefined;
 		
 		const pathRegex = /^(.*)\/(.*)$/;
 
-		const baseDir = folderPath.replace(pathRegex, '$1');
-		const prefix = folderPath.replace(pathRegex, '$2');
+		const baseDir = folderPath?.replace(pathRegex, '$1') ?? config.get('baseDir');
 
 		const key = await vscode.window.showInputBox({ prompt: 'redux action key' });
 		const payload = await vscode.window.showInputBox({ prompt: 'action payload' });
@@ -25,9 +26,14 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		);
 
-		console.log('ninesuns here is key: %s payload: %s isSaga: %s', key, payload, isSaga);
+		let prefix = folderPath?.replace(pathRegex, '$2');
+		if (!prefix) {
+			prefix = await vscode.window.showInputBox({ prompt: 'for module' });
+		}
 
-		if (key === undefined || payload === undefined || isSaga === undefined) {
+		if (
+			[baseDir, prefix, key, payload, isSaga].some((val) => val === undefined)
+		) {
 			// 可能被取消 就终止接下来的行为了
 			return;
 		}
