@@ -7,7 +7,7 @@
 		"email": "niensuns.lin@outlook.com"
 	},
 	"publisher": "ninesunsabiu",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.46.0"
 	},
@@ -70,5 +70,9 @@
 		"mocha": "^7.1.2",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ninesunsabiu/vscode-redux-code-gen.git"
 	}
 }
