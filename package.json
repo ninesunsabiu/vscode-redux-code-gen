@@ -7,7 +7,7 @@
 		"email": "niensuns.lin@outlook.com"
 	},
 	"publisher": "ninesunsabiu",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.46.0"
 	},
@@ -25,11 +25,6 @@
 				"title": "redux-code-gen"
 			}
 		],
-		"taskDefinitions": [
-			{
-				"type": "deno"
-			}
-		],
 		"menus": {
             "explorer/context": [
                 {
@@ -45,7 +40,7 @@
 				"reduxCodeGen.baseDir": {
 					"type": "string",
 					"default": "./src/redux",
-					"description": "生成 redux 代码的相对路径"
+					"description": "生成 redux 代码的相对 workspace 的路径"
 				}
 			}
 		}

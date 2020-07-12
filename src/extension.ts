@@ -1,11 +1,12 @@
 
 import * as vscode from 'vscode';
+import { reduxCodeGenerator } from './lib/redux_code_generator';
 
 export function activate(context: vscode.ExtensionContext) {
 
 	console.log('redux-code-gen extension active!');
 
-	let disposable = vscode.commands.registerCommand('ninesuns.reduxCodeGen', async (param) => {
+	const disposable = vscode.commands.registerCommand('ninesuns.reduxCodeGen', async (param) => {
 
 		const config = vscode.workspace.getConfiguration('reduxCodeGen');
 		
@@ -37,24 +38,8 @@ export function activate(context: vscode.ExtensionContext) {
 			// 可能被取消 就终止接下来的行为了
 			return;
 		}
-		
-		const codeGenTask = new vscode.Task(
-			{ type: 'deno' },
-			vscode.TaskScope.Workspace,
-			'redux-code-gen',
-			'deno',
-			new vscode.ShellExecution(
-`deno run --allow-read --allow-write --allow-net \
-https://raw.githubusercontent.com/ninesunsabiu/redux-code-gen/master/redux_code_generator.ts \
---action-prefix=${prefix} \
---key=${key} \
---payload='${payload}' \
---baseDir=${baseDir} \
---saga=${isSaga === 'saga'}`
-			)
-		);
 
-		vscode.tasks.executeTask(codeGenTask);
+		reduxCodeGenerator({ baseDir, actionPrefix: prefix!, key: key!, payload: payload!, saga: isSaga === 'saga' });
 	});
 
 	context.subscriptions.push(disposable);
