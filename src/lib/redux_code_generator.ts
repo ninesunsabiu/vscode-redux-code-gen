@@ -124,7 +124,7 @@ function createKeyFile(keyFilePath: string, opt: { prefix: string; key: string; 
   return new Promise<void>((resolve, reject) => {
     fs.writeFile(
       keyFilePath,
-      `\nexport enum ${getEnumName(keyFilePath)} {\n${space4}${insertContent}\n}\n`,
+      `export enum ${getEnumName(keyFilePath)} {\n${space4}${insertContent}\n}\n`,
       { encoding: 'utf8' },
       (error) => {
         if (error) {
@@ -151,7 +151,7 @@ function createActionCreatorFile(
 ) {
   console.log('创建新的 action 文件', path);
   /** 下面的代码 请不要格式化 */
-  const actionCreatorFileTpl = "\nimport { #prefix#ActionKey } from './#_prefix#ActionKey';\n#content#";
+  const actionCreatorFileTpl = "import { #prefix#ActionKey } from './#_prefix#ActionKey';\n#content#";
 
   const insertActionCreatorContent = getInsertActionCreatorContent(opt);
   const prefix = opt.prefix;
