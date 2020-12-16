@@ -4,8 +4,7 @@ export function* #_key#Saga(action: AGAction<#prefix#ActionPayload['#_key#']>) {
 }
 `;
 
-export const sagaFileTpl = `\
-import { AGAction } from '@/model/AGAction';
-import { #prefix#ActionPayload } from './#_prefix#ActionPayload';
+export const sagaFileTpl = `import type { AGAction } from '@/model/AGAction';
+import type { #prefix#ActionPayload } from './#_prefix#ActionPayload';
 ${sagaHandlerTpl}\
 `;
